@@ -1,45 +1,42 @@
-const router = require("express").Router();
-const express = require("express");
-const path = require("path");
-const fs = require("fs");
-const withAuth = require("../../utils/auth");
-const { Comments, Anime, User } = require("../../models");
+import express from 'express';
+import path from 'path';
+import withAuth from '../../utils/auth.js';
+import { Comments, Anime, User } from '../../models/index.js'; // Adjust the path as necessary
+
+const router = express.Router();
 
 router.use(
-  "/animeVids",
-  express.static(path.join(__dirname, "..", "..", "src", "animeVids"))
+  '/animeVids',
+  express.static(path.join(__dirname, '..', '..', 'src', 'animeVids')),
 );
 
-router.get("/angelbeats/video", withAuth, async (req, res) => {
+router.get('/angelbeats/video', withAuth, async (req, res) => {
   try {
-    const videoPath = "/animeVids/AngelBeats.mp4";
-
-    res.render("angelbeats", { videoPath });
+    const videoPath = '/animeVids/AngelBeats.mp4';
+    res.render('angelbeats', { videoPath });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
 
-router.get("/angelbeats/comments", async (req, res) => {
+router.get('/angelbeats/comments', async (req, res) => {
   try {
     const retrievePosts = await Comments.findAll({
       include: [{ model: User }],
     });
 
-    const transformingPost = retrievePosts.map((retrievePosts) =>
-      retrievePosts.get({ plain: true })
+    const transformingPost = retrievePosts.map((post) =>
+      post.get({ plain: true }),
     );
-    res.render("angelbeats", {
-      transformingPost,
-    });
+    res.render('angelbeats', { transformingPost });
   } catch (err) {
     console.log(err);
-    return res.status(500).json(err);
+    res.status(500).json(err);
   }
 });
 
-router.post("/angelbeats/:id", async (req, res) => {
+router.post('/angelbeats/:id', async (req, res) => {
   try {
     const message = await Comments.create({
       ...req.body,
@@ -52,4 +49,4 @@ router.post("/angelbeats/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
