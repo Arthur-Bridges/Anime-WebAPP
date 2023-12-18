@@ -1,18 +1,21 @@
-//All routes below
-const router = require("express").Router();
-const path = require("path");
-const angelBeatsRoute = require("./angelBeatsRoute");
-const clannadRoute = require("./clannadRoute");
-const onePieceRoute = require("./onePieceRoute");
-const violetRoute = require("./violetEvergardenRoute");
-const userRoutes = require("./userRoutes");
+// All routes below
+import express from 'express';
+const router = express.Router();
+import angelBeatsRoute from './angelBeatsRoute.js';
+import clannadRoute from './clannadRoute.js';
+import onePieceRoute from './onePieceRoute.js';
+import violetRoute from './violetEvergardenRoute.js';
+import loginRoute from './loginRoute.js';
+import logoutRoute from './logoutRoute.js';
+import signupRoute from './signupRoute.js';
 
-//router.use for all below
-//remove userroutes. Add login,logout,signup routes instead.
-router.use("/angelbeats", angelBeatsRoute);
-router.use("/clannad", clannadRoute);
-router.use("/onepiece", onePieceRoute);
-router.use("/violetevergarden", violetRoute);
-router.use("/users", userRoutes);
+// router.use for all below
+router.use('/angelbeats', angelBeatsRoute);
+router.use('/clannad', clannadRoute);
+router.use('/onepiece', onePieceRoute);
+router.use('/violetevergarden', violetRoute);
+router.use('/login', loginRoute);
+router.use('/logout', logoutRoute);
+router.use('/signup', signupRoute);
 
-module.exports = router;
+export default router;
