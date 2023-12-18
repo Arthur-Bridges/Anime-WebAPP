@@ -1,6 +1,5 @@
 // All routes below
 import express from 'express';
-const router = express.Router();
 import angelBeatsRoute from './angelBeatsRoute.js';
 import clannadRoute from './clannadRoute.js';
 import onePieceRoute from './onePieceRoute.js';
@@ -8,6 +7,8 @@ import violetRoute from './violetEvergardenRoute.js';
 import loginRoute from './loginRoute.js';
 import logoutRoute from './logoutRoute.js';
 import signupRoute from './signupRoute.js';
+
+const router = express.Router();
 
 // router.use for all below
 router.use('/angelbeats', angelBeatsRoute);
