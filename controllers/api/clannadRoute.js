@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
-import withAuth from '../../utils/auth.js'; // Adjust the path as needed
-import { Comments, Anime, User } from '../../models/index.js'; // Adjust the path as needed
+import withAuth from '../../utils/auth.js';
+import { Comments, Anime, User } from '../../models/index.js'; 
 
 const router = express.Router();
 
