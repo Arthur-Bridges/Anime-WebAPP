@@ -10,8 +10,8 @@ router.use(
   express.static(path.join(process.cwd(), 'src', 'animeVids')),
 );
 
-router.get('/angelbeats/video', withAuth, async (req, res) => {
-  const videoPath = await path.join(
+router.get('/angelbeats/video', withAuth, (req, res) => {
+  const videoPath = path.join(
     process.cwd(),
     'src',
     'animeVids',

@@ -10,13 +10,8 @@ router.use(
   express.static(path.join(process.cwd(), 'src', 'animeVids')),
 );
 
-router.get('/clannad/video', withAuth, async (req, res) => {
-  const videoPath = await path.join(
-    process.cwd(),
-    'src',
-    'animeVids',
-    'Clannad.mp4',
-  );
+router.get('/clannad/video', withAuth, (req, res) => {
+  const videoPath = path.join(process.cwd(), 'src', 'animeVids', 'Clannad.mp4');
   res.sendFile(videoPath);
 });
 

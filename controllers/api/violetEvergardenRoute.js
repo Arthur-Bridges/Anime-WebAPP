@@ -10,8 +10,8 @@ router.use(
   express.static(path.join(process.cwd(), 'src', 'animeVids')),
 );
 
-router.get('/violetevergarden/video', withAuth, async (req, res) => {
-  const videoPath = await path.join(
+router.get('/violetevergarden/video', withAuth, (req, res) => {
+  const videoPath = path.join(
     process.cwd(),
     'src',
     'animeVids',
