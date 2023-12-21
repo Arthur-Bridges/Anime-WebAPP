@@ -1,7 +1,7 @@
 import express from 'express';
 import path from 'path';
 import withAuth from '../../utils/auth.js';
-import { Comments, Anime, User } from '../../models/index.js'; 
+import { Comments, Anime, User } from '../../models/index.js';
 
 const router = express.Router();
 
@@ -11,7 +11,12 @@ router.use(
 );
 
 router.get('/clannad/video', withAuth, async (req, res) => {
-  const videoPath = path.join(process.cwd(), 'src', 'animeVids', 'Clannad.mp4');
+  const videoPath = await path.join(
+    process.cwd(),
+    'src',
+    'animeVids',
+    'Clannad.mp4',
+  );
   res.sendFile(videoPath);
 });
 
