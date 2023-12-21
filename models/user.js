@@ -1,6 +1,6 @@
-const sequelize = require("../config/connection");
-const bcrypt = require("bcrypt");
-const { Model, DataTypes } = require("sequelize");
+import sequelize from '../config/connection';
+import bcrypt from 'bcrypt';
+import { Model, DataTypes } from 'sequelize';
 
 class User extends Model {
   checkPassword(loginPw) {
@@ -46,8 +46,8 @@ User.init(
     timestamps: true,
     freezeTableName: true,
     underscored: true,
-    modelName: "user",
-  }
+    modelName: 'user',
+  },
 );
 
-module.exports = User;
+export default User;
