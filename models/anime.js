@@ -1,5 +1,5 @@
-const sequelize = require("../config/connection");
-const { Model, DataTypes } = require("sequelize");
+import sequelize from '../config/connection';
+import { Model, DataTypes } from 'sequelize';
 
 class Anime extends Model {}
 
@@ -28,15 +28,15 @@ Anime.init(
     comments_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "comments",
-        key: "id",
+        model: 'comments',
+        key: 'id',
       },
     },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "user",
-        key: "id",
+        model: 'user',
+        key: 'id',
       },
     },
   },
@@ -45,8 +45,8 @@ Anime.init(
     underscored: true,
     freezeTableName: true,
     timestamps: false,
-    modelName: "anime",
-  }
+    modelName: 'anime',
+  },
 );
 
-module.exports = Anime;
+export default Anime;
