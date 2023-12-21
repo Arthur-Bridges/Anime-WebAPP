@@ -11,7 +11,7 @@ router.use(
 );
 
 router.get('/onepiece/video', withAuth, async (req, res) => {
-  const videoPath = path.join(
+  const videoPath = await path.join(
     process.cwd(),
     'src',
     'animeVids',

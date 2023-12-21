@@ -1,23 +1,23 @@
 import express from 'express';
 import path from 'path';
 import withAuth from '../../utils/auth.js';
-import { Comments, Anime, User } from '../../models/index.js'; // Adjust the path as necessary
+import { Comments, Anime, User } from '../../models/index.js';
 
 const router = express.Router();
 
 router.use(
   '/animeVids',
-  express.static(path.join(__dirname, '..', '..', 'src', 'animeVids')),
+  express.static(path.join(process.cwd(), 'src', 'animeVids')),
 );
 
 router.get('/angelbeats/video', withAuth, async (req, res) => {
-  try {
-    const videoPath = '/animeVids/AngelBeats.mp4';
-    res.render('angelbeats', { videoPath });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
+  const videoPath = await path.join(
+    process.cwd(),
+    'src',
+    'animeVids',
+    'AngelBeats.mp4',
+  );
+  res.sendFile(videoPath);
 });
 
 router.get('/angelbeats/comments', async (req, res) => {
@@ -32,7 +32,7 @@ router.get('/angelbeats/comments', async (req, res) => {
     res.render('angelbeats', { transformingPost });
   } catch (err) {
     console.log(err);
-    res.status(500).json(err);
+    return res.status(500).json(err);
   }
 });
 

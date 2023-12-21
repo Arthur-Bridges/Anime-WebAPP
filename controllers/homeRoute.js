@@ -1,65 +1,65 @@
-const router = require("express").Router();
-const sequelize = require("sequelize");
 //TODO: add authentication and finish route
-//fill in path after auth is added in utils folder
-const withAuth = require("../utils/auth");
-const path = require("path");
+import express from 'express';
+import path from 'path';
+import withAuth from '../../utils/auth.js';
+import sequelize from 'sequelize';
 
+const router = express.Router();
 //home route
-router.get("/", async (req, res) => {
+router.get('/', (req, res) => {
   try {
-    return res.render("homepage");
+    return res.render('homepage');
   } catch (err) {
     return res.status(404).json(err);
   }
 });
 
-router.get("/angelbeats", withAuth, async (req, res) => {
+router.get('/angelbeats', withAuth, (req, res) => {
   try {
-    return res.render("angelbeats");
+    return res.render('angelbeats');
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/clannad", withAuth, async (req, res) => {
+router.get('/clannad', withAuth, (req, res) => {
   try {
-    return res.render("clannad");
+    return res.render('clannad');
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/onepiece", withAuth, async (req, res) => {
+router.get('/onepiece', withAuth, (req, res) => {
   try {
-    return res.render("onepiece");
+    return res.render('onepiece');
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/violetevergarden", withAuth, async (req, res) => {
+router.get('/violetevergarden', withAuth, (req, res) => {
   try {
-    return res.render("violetevergarden");
+    return res.render('violetevergarden');
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get("/login", (req, res) => {
+router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect('/');
     return;
   }
-  res.render("login");
+  res.render('login');
 });
 
-router.get("/signup", (req, res) => {
+router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect('/');
     return;
   }
-  res.render("signup");
+  res.render('signup');
 });
 
-module.exports = router;
+export default router;
